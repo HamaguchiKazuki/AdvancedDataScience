@@ -1,0 +1,94 @@
+\documentclass[uplatex,b5j]{jsarticle} % uplatexオプションを入れる
+\usepackage[scale=.8]{geometry}      % ページレイアウトを変更してみる
+\usepackage[T1]{fontenc}             % T1エンコーディングにしてみる
+\usepackage{txfonts}                 % 欧文フォントを変えてみる
+\usepackage{plext}                   % pLaTeX付属の縦書き支援パッケージ
+\usepackage{okumacro}                % jsclassesに同梱のパッケージ
+\usepackage{amsmath}
+\begin{document}
+\title{データ科学特論　課題1}
+\author{2120041 濱口和希}
+\西暦\maketitle                      % 漢字のマクロ名もOK
+
+\section{$E_p[X], V_p[X]$の計算}
+問題より
+\begin{eqnarray}
+    p(x|\theta)=\frac{\theta}{2}\mathrm{e}^{(-\theta|x-\mu|)} \label{eq:1} & \\
+    E_p[X]=\int_{-\infty}^{\infty}xp(x|\theta)dx \label{eq:2} & \\
+    V_p[X]=\int_{-\infty}^{\infty}(x-E_p[X])^2p(x|\theta)dx & \label{eq:3}
+\end{eqnarray}
+数式(\ref{eq:2})に数式(\ref{eq:1})を代入し定数を前に出すと
+\begin{equation}
+    E_p[X]=\frac{\theta}{2}\int_{-\infty}^{\infty}x\mathrm{e}^{(-\theta|x-\mu|)}dx \label{eq:4}
+\end{equation}
+ここで$|x-\mu|$の範囲は次のように場合分けできる
+\begin{equation}\label{eq:5}
+    |x-\mu| = \begin{cases}
+    -x+\mu & (x<\mu) \\
+     x-\mu & (x>\mu)
+    \end{cases}
+\end{equation}
+式(\ref{eq:4})を不定積分として考えると$x<\mu$の時は次のように表すことができる．
+\begin{equation}
+    E_p[X]=\frac{\theta}{2}\int x\mathrm{e}^{(\theta x -\theta \mu)} dx \label{eq:6}
+\end{equation}
+被積分関数$x\mathrm{e}^{(\theta x -\theta \mu)}$について，$s=\theta x -\theta \mu, ds=\theta dx$と置換する．
+\begin{equation}
+    =\frac{1}{2\theta}\int \mathrm{e}^{s}(s+\theta \mu) ds \label{eq:7}
+\end{equation}
+被積分関数$\mathrm{e}^{s}(s+\theta \mu)$を展開し多項式の積分を各項に分けて定数を前に出す．
+\begin{equation}
+    =\frac{1}{2\theta}\int \mathrm{e}^{s}s ds + \frac{\mu}{2}\int \mathrm{e}^{s} ds \label{eq:8}
+\end{equation}
+被積分関数$\mathrm{e}^{s}s ds$について，部分積分を適用し計算する．
+\begin{equation}
+    =\frac{\mathrm{e}^{s}}{2\theta}(s+\theta\mu-1) \label{eq:9}
+\end{equation}
+$s=\theta x -\theta \mu$を式(\ref{eq:9})に代入する．
+\begin{equation}
+    =\frac{(\theta x-1)\mathrm{e}^{\theta(x-\mu)}}{2\theta} + C (Cは積分定数) \label{eq:10}
+\end{equation}
+$x>\mu$の時も同様に計算する．
+\begin{equation}
+    -\frac{(\theta x+1)\mathrm{e}^{-\theta(x-\mu)}}{2\theta} + C (Cは積分定数) \label{eq:11}
+\end{equation}
+任意の大きな数$A$とするとし，式(\ref{eq:10})，式(\ref{eq:11})を使用して，$[-A,\mu][\mu,A]$の区間で定積分を行うと
+\begin{eqnarray} \label{eq:12}
+    E_p[X]=\int_{-A}^{\mu}x\mathrm{e}^{(\theta x -\theta \mu)} dx + \int_{\mu}^{A}x\mathrm{e}^{(-\theta x +\theta \mu)} dx \\ \nonumber
+    =\left[\frac{(\theta x-1)\mathrm{e}^{\theta(x-\mu)}}{2\theta}\right]_{-A}^{\mu} + \left[-\frac{(\theta x+1)\mathrm{e}^{-\theta(x-\mu)}}{2\theta}\right]_{\mu}^{A} \\ \nonumber
+    = \left(\frac{\theta \mu-1}{2\theta}\right) - \left(\frac{(-\theta A-1)\mathrm{e}^{-\theta(A+\mu)}}{2\theta}\right) + \left(-\frac{(\theta A+1)\mathrm{e}^{-\theta(A-\mu)}}{2\theta}\right) - \left(-\frac{\theta \mu+1}{2\theta}\right)
+\end{eqnarray}
+式(\ref{eq:12})について$A \to \infty$とすると，
+\begin{equation}
+    E_p[X] = \left(\frac{\theta \mu-1}{2\theta}\right) - 0 + 0 - \left(-\frac{\theta \mu+1}{2\theta}\right)
+    = \mu
+\end{equation}
+$E_p[X] = \mu$となる．
+
+% 数式(\ref{eq:5})の条件を数式(\ref{eq:4})に適用すると不定積分区間は次のように場合分けできる
+% \begin{equation}
+%     E_p[X]=\frac{\theta}{2}\int_{-\infty}^{\mu}x\exp(\theta(x-\mu))dx + \frac{\theta}{2}\int_{\mu}^{\infty}x\exp(-\theta(x-\mu))dx \label{eq:6}
+% \end{equation}
+% 被積分関数$x\exp(\theta(x-\mu)), x\exp(-\theta(x-\mu))$について，
+% \begin{eqnarray} \label{eq:7}
+%     s=\theta(x-\mu), ds =\theta dx \\ \nonumber
+%     t=-\theta(x-\mu), dt=\theta dx \\ \nonumber
+% \end{eqnarray}
+% を置換すると
+% \begin{eqnarray}
+%     \frac{1}{2\theta}\int_{-\infty}^{\mu}exp(s)(s+\theta\mu)ds + \frac{1}{2\theta}\int_{\mu}^{\infty}exp(t)(t-\theta\mu)dt \label{eq:8}
+% \end{eqnarray}
+% 被積分関数$exp(s)(s+\theta\mu)$を展開し多項式の積分を各項に分けて定数を前に出すと
+% \begin{eqnarray}
+%     \frac{1}{2\theta}\int_{-\infty}^{\mu}sexp(s) ds + \frac{\mu}{2}\int_{-\infty}^{\mu} exp(s) ds + \frac{1}{2\theta}\int_{\mu}^{\infty}texp(t) dt - \frac{\mu}{2}\int_{\mu}^{\infty}exp(t) dt \label{eq:9}
+% \end{eqnarray}
+% 被積分関数$sexp(s), texp(t)$について，部分積分を適用すると，
+% \begin{eqnarray}
+%     [sexp(s)]_{-\infty}^{\mu} - \int_{-\infty}^{\mu}exp(s) ds + \frac{\mu}{2}\int_{-\infty}^{\mu} exp(s) ds + \\ \nonumber 
+%     [texp(t)]_{\mu}^{\infty} - \int_{\mu}^{\infty}exp(t) dt - \frac{\mu}{2}\int_{\mu}^{\infty}exp(t) dt \label{eq:10}
+% \end{eqnarray}
+% 計算すると
+% \begin{eqnarray}
+%     \mu exp(\mu)
+% \end{eqnarray}
+\end{document}
