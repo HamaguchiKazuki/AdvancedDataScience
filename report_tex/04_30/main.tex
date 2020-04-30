@@ -11,6 +11,7 @@
 \西暦\maketitle                      % 漢字のマクロ名もOK
 
 \section{$E_p[X], V_p[X]$の計算}
+まず，$E_p[X]$について求める．
 問題より
 \begin{eqnarray}
     p(x|\theta)=\frac{\theta}{2}\mathrm{e}^{(-\theta|x-\mu|)} \label{eq:1} & \\
@@ -61,9 +62,41 @@ $x>\mu$の時も同様に計算する．
 式(\ref{eq:12})について$A \to \infty$とすると，
 \begin{equation}
     E_p[X] = \left(\frac{\theta \mu-1}{2\theta}\right) - 0 + 0 - \left(-\frac{\theta \mu+1}{2\theta}\right)
-    = \mu
+    = \mu \label{eq:13}
 \end{equation}
 $E_p[X] = \mu$となる．
+
+次に$V_p[X]$について求める．
+式(\ref{eq:3})に式(\ref{eq:13})を代入して計算すると
+\begin{eqnarray}
+    V_p[X]=\int_{-\infty}^{\infty}(x-E_p[X])^2p(x|\theta)dx \\ \nonumber
+    = \int_{-\infty}^{\infty}x^2p(x|\theta) dx - 2^\mu\int_{-\infty}^{\infty}xp(x|\theta) dx + \mu^2\int_{-\infty}^{\infty}p(x|\theta) dx \label{eq:14}
+\end{eqnarray}
+確率密度関数$p(x|\theta)$を($-\infty, \infty$)まで広義積分すると
+\begin{eqnarray}
+    \int_{-\infty}^{\infty}p(x|\theta) dx = 1 \label{eq:15}
+\end{eqnarray}
+また，$\int_{-\infty}^{\infty}x^2p(x|\theta) dx$について部分積分を適用し計算すると
+\begin{eqnarray}
+    \int_{-\infty}^{\infty}x^2p(x|\theta) dx = \mu^2 + \frac{2}{\theta^2} \label{eq:16}
+\end{eqnarray}
+となる．
+さらに
+\begin{eqnarray}
+    E_p[X] = \int_{-\infty}^{\infty}xp(x|\theta) dx = \mu \label{eq:17}
+\end{eqnarray}
+となるため，式(\ref{eq:14})に(\ref{eq:15})，(\ref{eq:16})，(\ref{eq:17})を代入し計算すると
+\begin{eqnarray}
+    V_p[X]=\int_{-\infty}^{\infty}x^2p(x|\theta) dx - 2^\mu\int_{-\infty}^{\infty}xp(x|\theta) dx + \mu^2\int_{-\infty}^{\infty}p(x|\theta) dx \\ \nonumber
+    = \mu^2 + \frac{2}{\theta^2} - 2\mu^2 + \mu^2 = \frac{2}{\theta^2} \label{eq:18}
+\end{eqnarray}
+以上より
+\begin{eqnarray}\label{eq:19}
+    E_p[X] = \mu \\ \nonumber
+    V_p[X] = \frac{2}{\theta}
+\end{eqnarray}
+
+
 
 % 数式(\ref{eq:5})の条件を数式(\ref{eq:4})に適用すると不定積分区間は次のように場合分けできる
 % \begin{equation}
