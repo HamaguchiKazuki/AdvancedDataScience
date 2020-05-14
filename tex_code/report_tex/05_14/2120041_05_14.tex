@@ -98,32 +98,66 @@ $f(x_i;\theta)=\theta_1x_i+\theta_2$を式(\ref{eq:1})に代入すると
 問1終了
 \section{}
 問1より
-
-
-% 数式(\ref{eq:5})の条件を数式(\ref{eq:4})に適用すると不定積分区間は次のように場合分けできる
-% \begin{equation}
-%     E_p[X]=\frac{\theta}{2}\int_{-\infty}^{\mu}x\exp(\theta(x-\mu))dx + \frac{\theta}{2}\int_{\mu}^{\infty}x\exp(-\theta(x-\mu))dx \label{eq:6}
-% \end{equation}
-% 被積分関数$x\exp(\theta(x-\mu)), x\exp(-\theta(x-\mu))$について，
-% \begin{eqnarray} \label{eq:7}
-%     s=\theta(x-\mu), ds =\theta dx \\ \nonumber
-%     t=-\theta(x-\mu), dt=\theta dx \\ \nonumber
-% \end{eqnarray}
-% を置換すると
-% \begin{eqnarray}
-%     \frac{1}{2\theta}\int_{-\infty}^{\mu}exp(s)(s+\theta\mu)ds + \frac{1}{2\theta}\int_{\mu}^{\infty}exp(t)(t-\theta\mu)dt \label{eq:8}
-% \end{eqnarray}
-% 被積分関数$exp(s)(s+\theta\mu)$を展開し多項式の積分を各項に分けて定数を前に出すと
-% \begin{eqnarray}
-%     \frac{1}{2\theta}\int_{-\infty}^{\mu}sexp(s) ds + \frac{\mu}{2}\int_{-\infty}^{\mu} exp(s) ds + \frac{1}{2\theta}\int_{\mu}^{\infty}texp(t) dt - \frac{\mu}{2}\int_{\mu}^{\infty}exp(t) dt \label{eq:9}
-% \end{eqnarray}
-% 被積分関数$sexp(s), texp(t)$について，部分積分を適用すると，
-% \begin{eqnarray}
-%     [sexp(s)]_{-\infty}^{\mu} - \int_{-\infty}^{\mu}exp(s) ds + \frac{\mu}{2}\int_{-\infty}^{\mu} exp(s) ds + \\ \nonumber 
-%     [texp(t)]_{\mu}^{\infty} - \int_{\mu}^{\infty}exp(t) dt - \frac{\mu}{2}\int_{\mu}^{\infty}exp(t) dt \label{eq:10}
-% \end{eqnarray}
-% 計算すると
-% \begin{eqnarray}
-%     \mu exp(\mu)
-% \end{eqnarray}
+\begin{eqnarray} \label{eq:9}
+    \boldsymbol{A}=\left[
+        \begin{array}{cc}
+            1+a^{2} & 1+a \\
+            1+a & 2
+        \end{array}
+    \right]
+\end{eqnarray}
+行列式$\boldsymbol{A}$の逆行列が存在するためには$\mathrm{det}\boldsymbol{A}\neq0$である必要がある．したがって，
+\begin{eqnarray} \label{eq:10}
+    \mathrm{det}\boldsymbol{A}=|\boldsymbol{A}|=\left|
+        \begin{array}{cc}
+            1+a^{2} & 1+a \\
+            1+a & 2
+        \end{array}
+    \right|
+    =2(1+a^2)-(1+a)(1+a)
+    =3a^2+2a+3\neq0
+\end{eqnarray}
+ここで，$a$を未知数として根を求めるため，解の公式を使用すると
+\begin{eqnarray} \label{eq:11}
+    a=\frac{-1-\sqrt{3\mathrm{j}}}{2}, \frac{-1+\sqrt{3\mathrm{j}}}{2}
+\end{eqnarray}
+となるため，$a\neq\frac{-1-\sqrt{3\mathrm{j}}}{2}, \frac{-1+\sqrt{3\mathrm{j}}}{2}(j=\sqrt(-1))$の時，行列式$\boldsymbol{A}$は逆行列を持つ正則行列となる．\\
+問2終了
+\section{}
+問1,2より行列式$\boldsymbol{A}$は$a\neq\frac{-1-\sqrt{3\mathrm{j}}}{2}, \frac{-1+\sqrt{3\mathrm{j}}}{2}$の時
+\begin{eqnarray} \label{eq:12}
+    \boldsymbol{\theta}=\boldsymbol{A^{-1}\boldsymbol{B}}
+    =\frac{1}{(a-1)^{2}}\left[
+        \begin{array}{cc}
+            2 & -(1+a) \\
+            -(1+a) & 1+a^{2}
+        \end{array}
+    \right]\left[
+        \begin{array}{c}
+            1 + ab \\
+            1 + b
+        \end{array}
+    \right]
+\end{eqnarray}
+計算すると
+\begin{eqnarray} \label{eq:13}
+    \left[
+        \begin{array}{c}
+            \theta_1 \\
+            \theta_2
+        \end{array}
+    \right]
+    =\frac{1}{(a-1)^{2}}\left[
+        \begin{array}{c}
+            a^{2} - a + b \\
+            ab - a - b + 1
+        \end{array}
+    \right]
+\end{eqnarray}
+したがって，
+\begin{eqnarray}
+    \theta_1 = \frac{1}{(a-1)^{2}}(a^{2}-a+b) \\  \label{eq:14}
+    \theta_2 = \frac{1}{(a-1)^{2}}(ab-a-b+1)  \label{eq:15}
+\end{eqnarray}
+問3終了
 \end{document}
