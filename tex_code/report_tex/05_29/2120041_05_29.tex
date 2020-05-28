@@ -1,0 +1,44 @@
+\documentclass[uplatex,b5j]{jsarticle} % uplatexオプションを入れる
+\usepackage[scale=.8]{geometry}      % ページレイアウトを変更してみる
+\usepackage[T1]{fontenc}             % T1エンコーディングにしてみる
+\usepackage{txfonts}                 % 欧文フォントを変えてみる
+\usepackage{plext}                   % pLaTeX付属の縦書き支援パッケージ
+\usepackage{okumacro}                % jsclassesに同梱のパッケージ
+\usepackage{amsmath}
+\begin{document}
+\title{データ科学特論　課題}
+\author{2120041 濱口和希}
+\西暦\maketitle                      % 漢字のマクロ名もOK
+
+\section{}
+\subsection{a}
+\subsection{b}
+
+
+\section{}
+\subsection{a}
+まず$x, logx$の定義域を調べると
+\begin{eqnarray}
+    x \{x \in \mathbb{R}\} \\ \nonumber
+    logx \{x \in \mathbb{R}, x > 0\} \\ \nonumber
+    f(x) = x - logx \{x \in \mathbb{R}, x > 0\}
+\end{eqnarray}
+となる．ここで，極値を取るための必要条件として，$f^{(1)}(x)=0$を計算する．
+\begin{eqnarray}
+    f^{(1)}(x)=1-\frac{1}{x}=0 \\ \nonumber
+    x = 1
+\end{eqnarray}
+$x=1$で極値を取るため$x > 0$における$f(x)$の増減表は表\ref{increase_decrease_matrix}になる．
+\begin{table}
+    \centering
+    \caption{$f(x)$の増減表}
+    \label{increase_decrease_matrix}
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $x$    & $0$   & $\cdots$ & $1$ & $\cdots$ & $\infty$ \\ \hline
+    $f^{(1)}(x)$ &     & $-$   & $0$ & $+$   &     \\ \hline
+    $f(x)$  & $\infty$ &  $\cdots$   &  $1$ &  $\cdots$   & $\infty$ \\ \hline
+    \end{tabular}
+\end{table}
+したがって定義域$x>0$において$f(x)$の値域は$1 \leq f(x) \leq \infty$となるため最小値は$1$である．
+\end{document}
