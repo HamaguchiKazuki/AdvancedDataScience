@@ -11,6 +11,8 @@ matplotlib = "*"
 jupyter = "*"
 pandas = "*"
 sympy = "*"
+autopep8 = "*"
+scipy = "*"
 
 [requires]
 python_version = "3.7"
