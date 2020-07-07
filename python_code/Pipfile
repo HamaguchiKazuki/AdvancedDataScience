@@ -10,9 +10,9 @@ numpy = "*"
 matplotlib = "*"
 jupyter = "*"
 pandas = "*"
-sympy = "*"
 autopep8 = "*"
 scipy = "*"
+scikit-learn = "*"
 
 [requires]
 python_version = "3.7"
