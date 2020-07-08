@@ -40,7 +40,7 @@ for row in range(meshgrid_row_idx):
             [X1[row, col], X2[row, col]], t)
 
 fig, ax = plt.subplots(1)
-ax.quiver(X1, X2, u, v, color='g')
+ax.quiver(X1, X2, np.cos(u), np.sin(v), color='g')
 ax.set(xlim=(-10, 10), ylim=(-3, 4),
        xlabel='$x_1$', ylabel='$x_2$', title='PHASE PORTRAIT of Center-Type Fixed Point')
 
@@ -51,5 +51,5 @@ ax.set(xlim=(-10, 10), ylim=(-3, 4),
 #     ax.plot(x2_start[:, 0], x2_start[:, 1], 'b-')  # path
 #     ax.plot([x2_start[0, 0]], [x2_start[0, 1]], 'o')  # start
 #     ax.plot([x2_start[-1, 0]], [x2_start[-1, 1]], 's')  # end
-
 plt.show()
+plt.savefig("img/phase_portrait_linear.png")

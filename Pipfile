@@ -13,6 +13,7 @@ pandas = "*"
 autopep8 = "*"
 scipy = "*"
 scikit-learn = "*"
+xgboost = "*"
 
 [requires]
 python_version = "3.7"

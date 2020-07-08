@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 w = 3
 w_0 = 2
 beta = 2
+
 Y, X = np.mgrid[-w:w:100j, -w:w:100j]
 U = Y
 V = -w_0**2 * X + beta * X**3
@@ -27,4 +28,4 @@ fig.savefig("phase_portrait.png")
 fig, ax = plt.subplots(1)
 ax.plot(x, v_x)
 ax.set(xlabel="$x$", ylabel="$V(x)$", title="Potential function")
-fig.savefig("potential_function.png")
+fig.savefig("potential_function_close_cretical_point.png")
